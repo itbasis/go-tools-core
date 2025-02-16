@@ -1,7 +1,7 @@
 package env_test
 
 import (
-	itbasisCoreEnv "github.com/itbasis/go-tools-core/v1/env"
+	itbasisCoreEnv "github.com/itbasis/go-tools-core/env"
 	"github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega"
 )

@@ -3,8 +3,8 @@ package cmd
 import (
 	"log/slog"
 
-	itbasisCoreLog "github.com/itbasis/go-tools-core/v1/log"
-	itbasisCoreOs "github.com/itbasis/go-tools-core/v1/os"
+	itbasisCoreLog "github.com/itbasis/go-tools-core/log"
+	itbasisCoreOs "github.com/itbasis/go-tools-core/os"
 	"github.com/spf13/cobra"
 )
 

@@ -3,8 +3,8 @@ package exec
 import (
 	"os/exec"
 
-	itbasisCoreEnv "github.com/itbasis/go-tools-core/v1/env"
-	itbasisCoreOption "github.com/itbasis/go-tools-core/v1/option"
+	itbasisCoreEnv "github.com/itbasis/go-tools-core/env"
+	itbasisCoreOption "github.com/itbasis/go-tools-core/option"
 )
 
 const _optionEnvKey itbasisCoreOption.Key = "option-env"

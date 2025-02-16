@@ -1,4 +1,4 @@
-module github.com/itbasis/go-tools-core/v1
+module github.com/itbasis/go-tools-core
 
 go 1.24.0
 
