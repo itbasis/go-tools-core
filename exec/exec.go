@@ -4,9 +4,9 @@ import (
 	"log/slog"
 	"os/exec"
 
-	itbasisCoreEnv "github.com/itbasis/go-tools/core/env"
-	itbasisCoreLog "github.com/itbasis/go-tools/core/log"
-	itbasisCoreOption "github.com/itbasis/go-tools/core/option"
+	itbasisCoreEnv "github.com/itbasis/go-tools/core/v1/env"
+	itbasisCoreLog "github.com/itbasis/go-tools/core/v1/log"
+	itbasisCoreOption "github.com/itbasis/go-tools/core/v1/option"
 )
 
 type Executable struct {

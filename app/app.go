@@ -1,7 +1,7 @@
 package app
 
 import (
-	itbasisCoreLog "github.com/itbasis/go-tools/core/log"
+	itbasisCoreLog "github.com/itbasis/go-tools/core/v1/log"
 	"github.com/spf13/cobra"
 )
 

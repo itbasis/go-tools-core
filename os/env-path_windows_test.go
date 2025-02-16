@@ -3,7 +3,7 @@
 package os_test
 
 import (
-	itbasisCoreOs "github.com/itbasis/go-tools/core/os"
+	itbasisCoreOs "github.com/itbasis/go-tools/core/v1/os"
 	"github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega"
 )

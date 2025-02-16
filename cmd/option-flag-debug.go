@@ -4,8 +4,8 @@ import (
 	"log/slog"
 	"slices"
 
-	itbasisCoreLog "github.com/itbasis/go-tools/core/log"
-	itbasisCoreOption "github.com/itbasis/go-tools/core/option"
+	itbasisCoreLog "github.com/itbasis/go-tools/core/v1/log"
+	itbasisCoreOption "github.com/itbasis/go-tools/core/v1/option"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

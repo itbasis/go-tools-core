@@ -3,8 +3,8 @@ package exec_test
 import (
 	"os/exec"
 
-	itbasisCoreExec "github.com/itbasis/go-tools/core/exec"
-	itbasisCoreOption "github.com/itbasis/go-tools/core/option"
+	itbasisCoreExec "github.com/itbasis/go-tools/core/v1/exec"
+	itbasisCoreOption "github.com/itbasis/go-tools/core/v1/option"
 	"github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega"
 )

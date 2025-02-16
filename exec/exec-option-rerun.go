@@ -3,7 +3,7 @@ package exec
 import (
 	"os/exec"
 
-	itbasisCoreOption "github.com/itbasis/go-tools/core/option"
+	itbasisCoreOption "github.com/itbasis/go-tools/core/v1/option"
 )
 
 const _optionRerunKey itbasisCoreOption.Key = "option-rerun"

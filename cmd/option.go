@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	itbasisCoreOption "github.com/itbasis/go-tools/core/option"
+	itbasisCoreOption "github.com/itbasis/go-tools/core/v1/option"
 	"github.com/spf13/cobra"
 )
 
