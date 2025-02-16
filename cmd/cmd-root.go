@@ -10,7 +10,7 @@ import (
 
 func InitDefaultCmdRoot(ctx context.Context, shortName string, opts ...Option) (*cobra.Command, error) {
 	var cmd = &cobra.Command{Short: shortName}
-	
+
 	cmd.SetContext(ctx)
 
 	if err := itbasisCoreOption.ApplyOptions(

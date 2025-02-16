@@ -2,6 +2,15 @@ package env
 
 import (
 	"strings"
+
+	"golang.org/x/tools/godoc/vfs"
+)
+
+const (
+	KeyPath   = "PATH"
+	KeyGoBin  = "GOBIN"
+	KeyGoPath = string(vfs.RootTypeGoPath)
+	KeyGoRoot = string(vfs.RootTypeGoRoot)
 )
 
 type (
@@ -33,9 +42,9 @@ func SlicesToMap(env List) Map {
 	return result
 }
 
-func MergeEnvs[E ListOrMap](source E, additional Map) Map {
-	if len(source) == 0 {
-		return additional
+func MergeEnvs[E ListOrMap](source E, additions ...Map) Map {
+	if len(source) == 0 && len(additions) == 1 {
+		return additions[0]
 	}
 
 	var result Map
@@ -47,8 +56,10 @@ func MergeEnvs[E ListOrMap](source E, additional Map) Map {
 		result = e
 	}
 
-	for k, v := range additional {
-		result[k] = v
+	for _, addition := range additions {
+		for k, v := range addition {
+			result[k] = v
+		}
 	}
 
 	return result
