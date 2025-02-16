@@ -3,7 +3,7 @@ package log_test
 import (
 	"log/slog"
 
-	itbasisCoreLog "github.com/itbasis/go-tools/core/v1/log"
+	itbasisCoreLog "github.com/itbasis/go-tools-core/v1/log"
 	"github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega"
 )

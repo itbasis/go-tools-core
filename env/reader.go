@@ -3,7 +3,7 @@ package env
 import (
 	"log/slog"
 
-	itbasisCoreLog "github.com/itbasis/go-tools/core/v1/log"
+	itbasisCoreLog "github.com/itbasis/go-tools-core/v1/log"
 
 	"github.com/caarlos0/env/v11"
 )

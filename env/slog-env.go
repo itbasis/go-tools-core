@@ -3,7 +3,7 @@ package env
 import (
 	"log/slog"
 
-	itbasisCoreLog "github.com/itbasis/go-tools/core/v1/log"
+	itbasisCoreLog "github.com/itbasis/go-tools-core/v1/log"
 )
 
 func SlogAttrEnv[E ListOrMap](env E) slog.Attr {

@@ -4,7 +4,7 @@ import (
 	"io"
 	"os"
 
-	itbasisCoreOption "github.com/itbasis/go-tools/core/v1/option"
+	itbasisCoreOption "github.com/itbasis/go-tools-core/v1/option"
 	"github.com/spf13/cobra"
 )
 

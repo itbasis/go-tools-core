@@ -3,8 +3,8 @@ package exec
 import (
 	"os/exec"
 
-	itbasisCoreOption "github.com/itbasis/go-tools/core/v1/option"
-	itbasisCoreOs "github.com/itbasis/go-tools/core/v1/os"
+	itbasisCoreOption "github.com/itbasis/go-tools-core/v1/option"
+	itbasisCoreOs "github.com/itbasis/go-tools-core/v1/os"
 )
 
 const _optionWorkDirKey itbasisCoreOption.Key = "itbasisCoreOption-workdir"
