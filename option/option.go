@@ -1,6 +1,7 @@
 package option
 
 import (
+	"context"
 	"log/slog"
 )
 
@@ -13,20 +14,20 @@ type LazyOptionFunc[T any] func() Option[T]
 
 type Option[T any] interface {
 	Key() Key
-	Apply(*T) error
+	Apply(ctx context.Context, obj *T) error
 }
 
-func ApplyOptions[O ~[]Option[T], T any](obj *T, opts O, defaults map[Key]LazyOptionFunc[T]) error {
+func ApplyOptions[O ~[]Option[T], T any](ctx context.Context, obj *T, opts O, defaults map[Key]LazyOptionFunc[T]) error {
 	var keys = make(map[Key]struct{}, len(opts))
 
 	for _, opt := range opts {
-		if err := _applyOption[T](keys, _checkKeyErr, opt, obj); err != nil {
+		if err := _applyOption[T](ctx, keys, _checkKeyErr, opt, obj); err != nil {
 			return err
 		}
 	}
 
 	for _, lazyOpt := range defaults {
-		if err := _applyOption[T](keys, _checkKeySilent, lazyOpt(), obj); err != nil {
+		if err := _applyOption[T](ctx, keys, _checkKeySilent, lazyOpt(), obj); err != nil {
 			return err
 		}
 	}
@@ -34,7 +35,7 @@ func ApplyOptions[O ~[]Option[T], T any](obj *T, opts O, defaults map[Key]LazyOp
 	return nil
 }
 
-func _applyOption[T any](keys map[Key]struct{}, checkKey _checkKey, opt Option[T], obj *T) error {
+func _applyOption[T any](ctx context.Context, keys map[Key]struct{}, checkKey _checkKey, opt Option[T], obj *T) error {
 	var (
 		key               = opt.Key()
 		slogAttrOptionKey = _slogAttrOptionKey(key)
@@ -63,5 +64,5 @@ func _applyOption[T any](keys map[Key]struct{}, checkKey _checkKey, opt Option[T
 
 	keys[key] = struct{}{}
 
-	return opt.Apply(obj) //nolint:wrapcheck // TODO
+	return opt.Apply(ctx, obj) //nolint:wrapcheck // TODO
 }

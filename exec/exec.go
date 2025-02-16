@@ -1,6 +1,7 @@
 package exec
 
 import (
+	"context"
 	"log/slog"
 	"os/exec"
 
@@ -15,13 +16,16 @@ type Executable struct {
 	cli string
 }
 
-func NewExecutable(cli string, opts ...Option) (*Executable, error) {
+func NewExecutable(ctx context.Context, cli string, opts ...Option) (*Executable, error) {
 	var cmp = &Executable{
 		cmd: exec.Command(cli),
 	}
 
 	if err := itbasisCoreOption.ApplyOptions(
-		cmp.cmd, opts, map[itbasisCoreOption.Key]itbasisCoreOption.LazyOptionFunc[exec.Cmd]{
+		ctx,
+		cmp.cmd,
+		opts,
+		map[itbasisCoreOption.Key]itbasisCoreOption.LazyOptionFunc[exec.Cmd]{
 			_optionWorkDirKey: WithOsPwd,
 			_optionInKey:      WithStdIn,
 			_optionOutKey:     WithStdOut,
@@ -33,14 +37,17 @@ func NewExecutable(cli string, opts ...Option) (*Executable, error) {
 	return cmp, nil
 }
 
-func (ge *Executable) Execute(opts ...RestoreOption) error {
+func (ge *Executable) Execute(ctx context.Context, opts ...RestoreOption) error {
 	var (
 		cmd = ge.cmd
 		err error
 	)
 
 	if applyErr := itbasisCoreOption.ApplyRestoreOptions(
-		cmd, opts, func() {
+		ctx,
+		cmd,
+		opts,
+		func() {
 			slog.Debug(
 				"execute external program",
 				itbasisCoreLog.SlogAttrCommand(cmd.Path, cmd.Dir, cmd.Args[1:], itbasisCoreEnv.SlogAttrEnv(cmd.Env)),

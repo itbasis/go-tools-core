@@ -1,6 +1,7 @@
 package exec_test
 
 import (
+	"context"
 	"os/exec"
 
 	itbasisCoreExec "github.com/itbasis/go-tools-core/exec"
@@ -12,7 +13,6 @@ import (
 var _ = ginkgo.Describe(
 	"Option Args", func() {
 		var path = "test_path"
-
 		ginkgo.Describe(
 			"without restoring the previous state", func() {
 				ginkgo.DescribeTable(
@@ -21,6 +21,7 @@ var _ = ginkgo.Describe(
 
 						gomega.Expect(
 							itbasisCoreOption.ApplyOptions(
+								context.Background(),
 								cmd,
 								[]itbasisCoreExec.Option{itbasisCoreExec.WithArgs(optionArgs...)},
 								nil,
@@ -41,6 +42,7 @@ var _ = ginkgo.Describe(
 
 						gomega.Expect(
 							itbasisCoreOption.ApplyOptions(
+								context.Background(),
 								cmd,
 								[]itbasisCoreExec.Option{
 									itbasisCoreExec.WithArgsIncludePrevious(includePrevArgs, optionArgs...),
@@ -78,6 +80,7 @@ var _ = ginkgo.Describe(
 
 						gomega.Expect(
 							itbasisCoreOption.ApplyRestoreOptions(
+								context.Background(),
 								cmd,
 								[]itbasisCoreExec.RestoreOption{itbasisCoreExec.WithRestoreArgs(optionArgs...)}, func() {
 									gomega.Expect(cmd.Args).To(gomega.HaveExactElements(wantArgs))
@@ -101,6 +104,7 @@ var _ = ginkgo.Describe(
 
 						gomega.Expect(
 							itbasisCoreOption.ApplyRestoreOptions(
+								context.Background(),
 								cmd,
 								[]itbasisCoreExec.RestoreOption{itbasisCoreExec.WithRestoreArgsIncludePrevious(
 									includePrevArgs,

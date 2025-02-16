@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"context"
 	"io"
 	"os"
 
@@ -19,7 +20,7 @@ type _optionOut struct {
 }
 
 func (r *_optionOut) Key() itbasisCoreOption.Key { return _optionOutKey }
-func (r *_optionOut) Apply(cmd *cobra.Command) error {
+func (r *_optionOut) Apply(_ context.Context, cmd *cobra.Command) error {
 	cmd.SetOut(r.out)
 
 	return nil

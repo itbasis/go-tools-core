@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"context"
 	"io"
 	"os"
 
@@ -19,7 +20,7 @@ type _optionErr struct {
 }
 
 func (r *_optionErr) Key() itbasisCoreOption.Key { return _optionErrKey }
-func (r *_optionErr) Apply(cmd *cobra.Command) error {
+func (r *_optionErr) Apply(_ context.Context, cmd *cobra.Command) error {
 	cmd.SetErr(r.out)
 
 	return nil

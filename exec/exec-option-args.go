@@ -1,6 +1,7 @@
 package exec
 
 import (
+	"context"
 	"log/slog"
 	"os/exec"
 
@@ -44,7 +45,7 @@ type optionArgs struct {
 
 func (r *optionArgs) Key() itbasisCoreOption.Key { return _optionArgsKey }
 
-func (r *optionArgs) Apply(cmd *exec.Cmd) error {
+func (r *optionArgs) Apply(_ context.Context, cmd *exec.Cmd) error {
 	switch r.includePrevArgs {
 	case IncludePrevArgsNo:
 		cmd.Args = append([]string{cmd.Path}, r.args...)
@@ -64,7 +65,7 @@ func (r *optionArgs) Apply(cmd *exec.Cmd) error {
 	return nil
 }
 
-func (r *optionArgs) Save(cmd *exec.Cmd) error {
+func (r *optionArgs) Save(_ context.Context, cmd *exec.Cmd) error {
 	if r.restore {
 		r.prev = cmd.Args
 	}
@@ -72,7 +73,7 @@ func (r *optionArgs) Save(cmd *exec.Cmd) error {
 	return nil
 }
 
-func (r *optionArgs) Restore(cmd *exec.Cmd) error {
+func (r *optionArgs) Restore(_ context.Context, cmd *exec.Cmd) error {
 	if r.restore {
 		cmd.Args = r.prev
 	}

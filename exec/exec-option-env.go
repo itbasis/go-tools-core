@@ -1,6 +1,7 @@
 package exec
 
 import (
+	"context"
 	"os/exec"
 
 	itbasisCoreEnv "github.com/itbasis/go-tools-core/env"
@@ -24,7 +25,7 @@ type _optionEnv[E itbasisCoreEnv.ListOrMap] struct {
 }
 
 func (r *_optionEnv[E]) Key() itbasisCoreOption.Key { return _optionEnvKey }
-func (r *_optionEnv[E]) Apply(cmd *exec.Cmd) error {
+func (r *_optionEnv[E]) Apply(_ context.Context, cmd *exec.Cmd) error {
 	switch v := any(r.env).(type) {
 	case itbasisCoreEnv.List:
 		cmd.Env = v
@@ -36,14 +37,14 @@ func (r *_optionEnv[E]) Apply(cmd *exec.Cmd) error {
 	return nil
 }
 
-func (r *_optionEnv[E]) Save(cmd *exec.Cmd) error {
+func (r *_optionEnv[E]) Save(_ context.Context, cmd *exec.Cmd) error {
 	if r.restore {
 		r.prev = cmd.Env
 	}
 
 	return nil
 }
-func (r *_optionEnv[E]) Restore(cmd *exec.Cmd) error {
+func (r *_optionEnv[E]) Restore(_ context.Context, cmd *exec.Cmd) error {
 	if r.restore {
 		cmd.Env = r.prev
 	}

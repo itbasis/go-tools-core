@@ -1,6 +1,7 @@
 package exec
 
 import (
+	"context"
 	"os/exec"
 
 	itbasisCoreOption "github.com/itbasis/go-tools-core/option"
@@ -21,7 +22,7 @@ type _optionWorkDir struct {
 }
 
 func (r *_optionWorkDir) Key() itbasisCoreOption.Key { return _optionWorkDirKey }
-func (r *_optionWorkDir) Apply(cmd *exec.Cmd) error {
+func (r *_optionWorkDir) Apply(_ context.Context, cmd *exec.Cmd) error {
 	cmd.Dir = r.dir
 
 	return nil

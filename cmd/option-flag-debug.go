@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"context"
 	"log/slog"
 	"slices"
 
@@ -42,7 +43,7 @@ type _optionDebugFlag struct {
 
 func (r *_optionDebugFlag) Key() itbasisCoreOption.Key { return _optionDebugFlagKey }
 
-func (r *_optionDebugFlag) Apply(cmd *cobra.Command) error {
+func (r *_optionDebugFlag) Apply(_ context.Context, cmd *cobra.Command) error {
 	var flags *pflag.FlagSet
 
 	if r.persistent {

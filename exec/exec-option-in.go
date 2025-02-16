@@ -1,6 +1,7 @@
 package exec
 
 import (
+	"context"
 	"io"
 	"os"
 	"os/exec"
@@ -26,7 +27,7 @@ type _optionIn struct {
 }
 
 func (r *_optionIn) Key() itbasisCoreOption.Key { return _optionInKey }
-func (r *_optionIn) Apply(cmd *exec.Cmd) error {
+func (r *_optionIn) Apply(_ context.Context, cmd *exec.Cmd) error {
 	cmd.Stdin = r.in
 
 	return nil

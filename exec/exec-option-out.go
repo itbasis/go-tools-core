@@ -1,6 +1,7 @@
 package exec
 
 import (
+	"context"
 	"io"
 	"os"
 	"os/exec"
@@ -33,7 +34,7 @@ type _optionOut struct {
 }
 
 func (r *_optionOut) Key() itbasisCoreOption.Key { return _optionOutKey }
-func (r *_optionOut) Apply(cmd *exec.Cmd) error {
+func (r *_optionOut) Apply(_ context.Context, cmd *exec.Cmd) error {
 	cmd.Stdout = r.out
 	cmd.Stderr = r.err
 

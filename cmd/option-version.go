@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"context"
+
 	itbasisCoreOption "github.com/itbasis/go-tools-core/option"
 	itbasisCoreVersion "github.com/itbasis/go-tools-core/version"
 	"github.com/spf13/cobra"
@@ -20,7 +22,7 @@ type _optionVersion struct {
 }
 
 func (r *_optionVersion) Key() itbasisCoreOption.Key { return _optionVersionKey }
-func (r *_optionVersion) Apply(cmd *cobra.Command) error {
+func (r *_optionVersion) Apply(_ context.Context, cmd *cobra.Command) error {
 	cmd.Version = r.version.String()
 
 	return nil
