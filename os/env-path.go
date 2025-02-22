@@ -9,6 +9,26 @@ import (
 	"strings"
 )
 
+var pathListSeparator string
+
+func init() {
+	_ = GetPathListSeparator()
+}
+
+func GetPathListSeparator() string {
+	if pathListSeparator != "" {
+		return pathListSeparator
+	}
+
+	if strings.Contains(os.Getenv("PATH"), ":") {
+		pathListSeparator = ":"
+	} else {
+		pathListSeparator = ";"
+	}
+
+	return pathListSeparator
+}
+
 // CleanPath Removes the sdkm directory from paths
 //
 //nolint:nonamedreturns // To optimize result logging
@@ -28,7 +48,7 @@ func CleanPath(path string, cleanPaths ...string) (result string) {
 		return result
 	}
 
-	var splitPaths = strings.Split(path, string(os.PathListSeparator))
+	var splitPaths = strings.Split(path, pathListSeparator)
 
 	splitPaths = slices.DeleteFunc(
 		splitPaths, func(s string) bool {
@@ -36,7 +56,7 @@ func CleanPath(path string, cleanPaths ...string) (result string) {
 		},
 	)
 
-	result = strings.Join(splitPaths, string(os.PathListSeparator))
+	result = strings.Join(splitPaths, pathListSeparator)
 
 	return result
 }
@@ -46,5 +66,5 @@ func AddBeforePath(path string, paths ...string) string {
 		return path
 	}
 
-	return strings.Join(paths, string(os.PathListSeparator)) + string(os.PathListSeparator) + path
+	return strings.Join(paths, pathListSeparator) + pathListSeparator + path
 }
