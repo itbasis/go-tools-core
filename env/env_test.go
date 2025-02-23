@@ -8,7 +8,7 @@ import (
 
 var _ = ginkgo.DescribeTable(
 	"MapToSlices", func(value itbasisCoreEnv.Map, want itbasisCoreEnv.List) {
-		gomega.Expect(itbasisCoreEnv.MapToSlices(value)).To(gomega.Equal(want))
+		gomega.Expect(itbasisCoreEnv.MapToSlices(value)).To(gomega.ConsistOf(want))
 	},
 	ginkgo.Entry(nil, itbasisCoreEnv.Map{}, itbasisCoreEnv.List{}),
 	ginkgo.Entry(nil, (itbasisCoreEnv.Map)(nil), itbasisCoreEnv.List{}),
