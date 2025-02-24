@@ -4,10 +4,16 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
-	"os"
 	"slices"
 	"strings"
 )
+
+// func SplitPath(path string) []string {
+// 	if len(path) == 0 {
+// 		return []string{}
+// 	}
+// 	// os.Getenv()
+// }
 
 // CleanPath Removes the sdkm directory from paths
 //
@@ -23,12 +29,12 @@ func CleanPath(path string, cleanPaths ...string) (result string) {
 	}
 
 	if len(cleanPaths) == 0 {
-		result = path
+		result = FixPath(path)
 
 		return result
 	}
 
-	var splitPaths = strings.Split(path, string(os.PathListSeparator))
+	var splitPaths = SplitPathList(path)
 
 	splitPaths = slices.DeleteFunc(
 		splitPaths, func(s string) bool {
@@ -36,15 +42,17 @@ func CleanPath(path string, cleanPaths ...string) (result string) {
 		},
 	)
 
-	result = strings.Join(splitPaths, string(os.PathListSeparator))
+	result = strings.Join(splitPaths, _pathListSeparator)
 
 	return result
 }
 
 func AddBeforePath(path string, paths ...string) string {
+	path = FixPath(path)
+	
 	if len(paths) == 0 {
 		return path
 	}
 
-	return strings.Join(paths, string(os.PathListSeparator)) + string(os.PathListSeparator) + path
+	return strings.Join(paths, _pathListSeparator) + _pathListSeparator + path
 }
