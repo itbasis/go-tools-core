@@ -12,12 +12,12 @@ const (
 )
 
 func Pwd() string {
-	executable, err := os.Getwd()
+	dir, err := os.Getwd()
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	return executable
+	return dir
 }
 
 func UserHomeDir() string {
@@ -30,10 +30,10 @@ func UserHomeDir() string {
 }
 
 func ExecutableDir() string {
-	executable, err := os.Executable()
+	dir, err := os.Executable()
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	return filepath.Dir(executable)
+	return filepath.Dir(dir)
 }
