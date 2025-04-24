@@ -3,11 +3,22 @@ package cmd
 import "strings"
 
 func BuildUse(args ...string) string {
-	var result string
+	switch len(args) {
+	case 0:
+		return ""
 
-	for _, arg := range args {
-		result = result + strings.TrimSpace(arg) + " "
+	case 1:
+		return strings.TrimSpace(args[0])
+
+	default:
+		var result = strings.TrimSpace(args[0])
+
+		for i := 1; i < len(args); i++ {
+			if s := strings.TrimSpace(args[i]); s != "" {
+				result += " " + s
+			}
+		}
+
+		return result
 	}
-
-	return strings.TrimSpace(result)
 }

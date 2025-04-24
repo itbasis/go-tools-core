@@ -3,7 +3,7 @@ package os
 import (
 	"testing"
 
-	itbasisTestUtils "github.com/itbasis/go-test-utils/v5/ginkgo"
+	itbasisTestUtils "github.com/itbasis/go-test-utils/v6/ginkgo"
 	"github.com/onsi/ginkgo/v2"
 )
 

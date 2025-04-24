@@ -10,8 +10,13 @@ var _ = ginkgo.DescribeTable(
 	"build use", func(args []string, want string) {
 		gomega.Expect(itbasisCoreCmd.BuildUse(args...)).To(gomega.Equal(want))
 	},
+	ginkgo.Entry(nil, []string{}, ""),
 	ginkgo.Entry(nil, []string{"test"}, "test"),
+	ginkgo.Entry(nil, []string{"test", ""}, "test"),
+	ginkgo.Entry(nil, []string{"test", " "}, "test"),
 	ginkgo.Entry(nil, []string{"test", "test1"}, "test test1"),
+	ginkgo.Entry(nil, []string{"test", "test1", "test2"}, "test test1 test2"),
+	ginkgo.Entry(nil, []string{"test", "", "test1"}, "test test1"),
 	ginkgo.Entry(nil, []string{"test ", "test1"}, "test test1"),
 	ginkgo.Entry(nil, []string{" test", "test1"}, "test test1"),
 	ginkgo.Entry(nil, []string{"test ", " test1"}, "test test1"),
