@@ -65,9 +65,10 @@ func FixPath(value string) string {
 			return _unixPathSeparator + strings.ToLower(s[0:1]) + _unixPathSeparator
 		},
 	)
+
 	result = filepath.ToSlash(result)
 
-	return strings.Replace(result, _windowsPathListSeparator, _unixPathListSeparator, -1)
+	return strings.ReplaceAll(result, _windowsPathListSeparator, _unixPathListSeparator)
 }
 
 func SplitPathList(value string) []string {

@@ -8,13 +8,6 @@ import (
 	"strings"
 )
 
-// func SplitPath(path string) []string {
-// 	if len(path) == 0 {
-// 		return []string{}
-// 	}
-// 	// os.Getenv()
-// }
-
 // CleanPath Removes the sdkm directory from paths
 //
 //nolint:nonamedreturns // To optimize result logging
@@ -49,7 +42,7 @@ func CleanPath(path string, cleanPaths ...string) (result string) {
 
 func AddBeforePath(path string, paths ...string) string {
 	path = FixPath(path)
-	
+
 	if len(paths) == 0 {
 		return path
 	}
